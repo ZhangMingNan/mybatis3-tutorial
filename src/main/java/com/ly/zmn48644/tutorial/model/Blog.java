@@ -1,31 +1,59 @@
 package com.ly.zmn48644.tutorial.model;
 
+import java.util.List;
+
 public class Blog {
-    private Integer blogId;
-    private String blogTitle;
-    private Integer authorId;
 
-    public Integer getBlogId() {
-        return blogId;
+    public Blog(Integer id) {
+        this.id = id;
     }
 
-    public void setBlogId(Integer blogId) {
-        this.blogId = blogId;
+    private Integer id;
+    private String title;
+    private Author author;
+
+    private List<Post> posts;
+
+
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    public String getBlogTitle() {
-        return blogTitle;
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
-    public void setBlogTitle(String blogTitle) {
-        this.blogTitle = blogTitle;
+    public Integer getId() {
+        return id;
     }
 
-    public Integer getAuthorId() {
-        return authorId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setAuthorId(Integer authorId) {
-        this.authorId = authorId;
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    @Override
+    public String toString() {
+        return "Blog{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author=" + author +
+                ", posts=" + posts +
+                '}';
     }
 }

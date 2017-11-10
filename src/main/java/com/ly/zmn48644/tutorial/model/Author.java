@@ -1,51 +1,52 @@
 package com.ly.zmn48644.tutorial.model;
 
 public class Author {
-    private Integer authorId;
-    private String authorUsername;
-    private String authorPassword;
-    private String authorEmail;
-    private String authorBio;
+    private Integer id;
+    private String username;
+    private String password;
+    private String email;
+    private String bio;
     private String favouriteSection;
 
-    public Integer getAuthorId() {
-        return authorId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setAuthorId(Integer authorId) {
-        this.authorId = authorId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getAuthorUsername() {
-        return authorUsername;
+
+    public String getUsername() {
+        return username;
     }
 
-    public void setAuthorUsername(String authorUsername) {
-        this.authorUsername = authorUsername;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getAuthorPassword() {
-        return authorPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAuthorPassword(String authorPassword) {
-        this.authorPassword = authorPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getAuthorEmail() {
-        return authorEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAuthorEmail(String authorEmail) {
-        this.authorEmail = authorEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getAuthorBio() {
-        return authorBio;
+    public String getBio() {
+        return bio;
     }
 
-    public void setAuthorBio(String authorBio) {
-        this.authorBio = authorBio;
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public String getFavouriteSection() {
@@ -54,5 +55,17 @@ public class Author {
 
     public void setFavouriteSection(String favouriteSection) {
         this.favouriteSection = favouriteSection;
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", bio='" + bio + '\'' +
+                ", favouriteSection='" + favouriteSection + '\'' +
+                '}';
     }
 }

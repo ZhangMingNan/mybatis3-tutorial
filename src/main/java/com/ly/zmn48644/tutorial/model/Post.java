@@ -1,16 +1,40 @@
 package com.ly.zmn48644.tutorial.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Post {
     private Integer id;
+    private String subject;
+
+    private Author author;
+    private List<Comment> comments;
+    private List<Tag> tags;
+
+
+
     private Integer blogId;
-    private Integer authorId;
+
     private Date createdOn;
     private String section;
-    private String subject;
     private String draft;
     private String body;
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", subject='" + subject + '\'' +
+                ", author=" + author +
+                ", comments=" + comments +
+                ", tags=" + tags +
+                ", blogId=" + blogId +
+                ", createdOn=" + createdOn +
+                ", section='" + section + '\'' +
+                ", draft='" + draft + '\'' +
+                ", body='" + body + '\'' +
+                '}';
+    }
 
     public Integer getId() {
         return id;
@@ -20,20 +44,44 @@ public class Post {
         this.id = id;
     }
 
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
     public Integer getBlogId() {
         return blogId;
     }
 
     public void setBlogId(Integer blogId) {
         this.blogId = blogId;
-    }
-
-    public Integer getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Integer authorId) {
-        this.authorId = authorId;
     }
 
     public Date getCreatedOn() {
@@ -50,14 +98,6 @@ public class Post {
 
     public void setSection(String section) {
         this.section = section;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
     }
 
     public String getDraft() {

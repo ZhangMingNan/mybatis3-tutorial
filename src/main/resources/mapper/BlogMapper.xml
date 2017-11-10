@@ -1,65 +1,70 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-  <resultMap id="detailedBlogResultMap" type="Blog">
-    <constructor>
-      <idArg column="blog_id" javaType="int"/>
-    </constructor>
-    <result property="title" column="blog_title"/>
-    <association property="author" javaType="Author">
-      <id property="id" column="author_id"/>
-      <result property="username" column="author_username"/>
-      <result property="password" column="author_password"/>
-      <result property="email" column="author_email"/>
-      <result property="bio" column="author_bio"/>
-      <result property="favouriteSection" column="author_favourite_section"/>
-    </association>
-    <collection property="posts" ofType="Post">
-      <id property="id" column="post_id"/>
-      <result property="subject" column="post_subject"/>
-      <association property="author" javaType="Author"/>
-      <collection property="comments" ofType="Comment">
-        <id property="id" column="comment_id"/>
-      </collection>
-      <collection property="tags" ofType="Tag" >
-        <id property="id" column="tag_id"/>
-      </collection>
-      <discriminator javaType="int" column="draft">
-        <case value="1" resultType="DraftPost"/>
-      </discriminator>
-    </collection>
-  </resultMap>
+<mapper namespace="com.ly.zmn48644.tutorial.mapper.BlogMapper">
+    <resultMap id="detailedBlogResultMap" type="Blog">
+        <constructor>
+            <idArg column="blog_id" javaType="int"/>
+        </constructor>
+        <result property="title" column="blog_title" jdbcType="VARCHAR"/>
+
+        <association property="author" javaType="Author">
+            <id property="id" column="author_id"/>
+            <result property="username" column="author_username"/>
+            <result property="password" column="author_password"/>
+            <result property="email" column="author_email"/>
+            <result property="bio" column="author_bio"/>
+            <result property="favouriteSection" column="author_favourite_section"/>
+        </association>
+        <collection property="posts" ofType="Post">
+            <id property="id" column="post_id" jdbcType="INTEGER"/>
+            <result property="subject" column="post_subject" jdbcType="VARCHAR"/>
+            <result property="createdOn" column="post_created_on" jdbcType="TIMESTAMP"/>
+            <result property="section" column="post_section" jdbcType="VARCHAR"/>
+            <result property="draft" column="post_draft" jdbcType="VARCHAR"/>
+            <result property="body" column="post_body" jdbcType="VARCHAR"/>
+            <association property="author" javaType="Author"/>
+            <collection property="comments" ofType="Comment">
+                <id property="id" column="comment_id" jdbcType="INTEGER"/>
+                <result property="name" column="comment_name" jdbcType="VARCHAR" />
+                <result property="comment" column="comment_text" jdbcType="VARCHAR" />
+            </collection>
+            <collection property="tags" ofType="Tag">
+                <id property="id" column="tag_id" jdbcType="INTEGER"/>
+                <id property="name" column="tag_name" jdbcType="INTEGER"/>
+            </collection>
+        </collection>
+    </resultMap>
     <select id="selectBlogDetails" resultMap="detailedBlogResultMap">
-      SELECT
-        B.blog_id               AS blog_id,
-        B.blog_title             AS blog_title,
-        B.author_id         AS blog_author_id,
-        A.author_id                AS author_id,
-        A.author_username          AS author_username,
-        A.author_password          AS author_password,
-        A.author_email             AS author_email,
-        A.author_bio               AS author_bio,
-        A.favourite_section AS author_favourite_section,
-        P.id                AS post_id,
-        P.blog_id           AS post_blog_id,
-        P.author_id         AS post_author_id,
-        P.created_on        AS post_created_on,
-        P.section           AS post_section,
-        P.subject           AS post_subject,
-        P.draft             AS draft,
-        P.body              AS post_body,
-        C.id                AS comment_id,
-        C.post_id           AS comment_post_id,
-        C.name              AS comment_name,
-        C.comment           AS comment_text,
-        T.id                AS tag_id,
-        T.name              AS tag_name
-      FROM t_blog B
-        LEFT OUTER JOIN t_author A ON B.author_id = A.author_id
-        LEFT OUTER JOIN t_post P ON B.blog_id = P.blog_id
-        LEFT OUTER JOIN t_comment C ON P.id = C.post_id
-        LEFT OUTER JOIN t_post_tag PT ON PT.post_id = P.id
-        LEFT OUTER JOIN t_tag T ON PT.tag_id = T.id
-      WHERE B.blog_id = #{blogId};
+      select
+        b.id               as blog_id,
+        b.blog_title             as blog_title,
+        b.author_id         as blog_author_id,
+        a.id                as author_id,
+        a.author_username          as author_username,
+        a.author_password          as author_password,
+        a.author_email             as author_email,
+        a.author_bio               as author_bio,
+        a.favourite_section as author_favourite_section,
+        p.id                as post_id,
+        p.blog_id           as post_blog_id,
+        p.author_id         as post_author_id,
+        p.created_on        as post_created_on,
+        p.section           as post_section,
+        p.subject           as post_subject,
+        p.draft             as post_draft,
+        p.body              as post_body,
+        c.id                as comment_id,
+        c.post_id           as comment_post_id,
+        c.name              as comment_name,
+        c.comment           as comment_text,
+        t.id                as tag_id,
+        t.name              as tag_name
+      from t_blog b
+        left outer join t_author a on b.author_id = a.id
+        left outer join t_post p on b.id = p.blog_id
+        left outer join t_comment c on p.id = c.post_id
+        left outer join t_post_tag pt on pt.post_id = p.id
+        left outer join t_tag t on pt.tag_id = t.id
+      where b.id = #{blogid};
     </select>
 </mapper>

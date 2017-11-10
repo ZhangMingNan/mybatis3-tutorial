@@ -1,8 +1,8 @@
 package com.ly.zmn48644.tutorial;
 
 
-import com.ly.zmn48644.tutorial.mapper.AdminMapper;
-import com.ly.zmn48644.tutorial.model.Admin;
+import com.ly.zmn48644.tutorial.mapper.BlogMapper;
+import com.ly.zmn48644.tutorial.model.Blog;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -14,6 +14,11 @@ import java.util.List;
 
 public class App {
     public static void main(String[] args) throws IOException {
+
+        testBlog();
+    }
+
+    private static void testBlog() throws IOException {
         // 第一步 设置配置文件,完成各种初始化工作.
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
@@ -22,13 +27,11 @@ public class App {
 
         // 第二步 获取 sqlSession
         SqlSession sqlSession = sqlSessionFactory.openSession();
-
-        // 第三步 从sqlSession获取想要的mapper对象,调用想要执行的方法
-        AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
-        List<Admin> admins = mapper.selectAdmin();
-
-        //System.out.println(admin.getEmail());
+        BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+        Blog blog = mapper.selectBlogDetails(1);
+        System.out.println(blog.toString());
 
     }
+
 
 }
