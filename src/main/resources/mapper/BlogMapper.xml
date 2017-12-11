@@ -67,4 +67,8 @@
         left outer join t_tag t on pt.tag_id = t.id
       where b.id = #{blogid};
     </select>
+
+    <select id="blogCount" resultType="int" >
+        SELECT count(*) FROM  t_blog
+    </select>
 </mapper>
