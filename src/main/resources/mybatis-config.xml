@@ -12,13 +12,14 @@
         <setting name="multipleResultSetsEnabled" value="true"/>
         <setting name="useColumnLabel" value="true"/>
         <setting name="useGeneratedKeys" value="false"/>
+        <setting name="useActualParamName" value="true"/>
         <setting name="autoMappingBehavior" value="PARTIAL"/>
         <setting name="autoMappingUnknownColumnBehavior" value="WARNING"/>
         <setting name="defaultExecutorType" value="SIMPLE"/>
         <setting name="defaultStatementTimeout" value="25"/>
         <setting name="defaultFetchSize" value="1"/>
         <setting name="safeRowBoundsEnabled" value="false"/>
-        <setting name="mapUnderscoreToCamelCase" value="false"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
         <setting name="localCacheScope" value="SESSION"/>
         <setting name="jdbcTypeForNull" value="OTHER"/>
         <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
@@ -47,6 +48,8 @@
 
     <mappers>
         <mapper resource="mapper/BlogMapper.xml"/>
+        <mapper resource="mapper/AuthorMapper.xml"/>
+        <mapper resource="mapper/CommentMapper.xml"/>
     </mappers>
 
 </configuration>

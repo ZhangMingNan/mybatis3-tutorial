@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
+<mapper namespace="com.ly.zmn48644.tutorial.mapper.CommentMapper">
 
+    <parameterMap id="commentMap" type="com.ly.zmn48644.tutorial.model.Comment">
+        <parameter property="id" />
+        <parameter property="postId" />
+    </parameterMap>
+
+    <select id="selectComment" resultType="Comment">
+              select id,post_id,name,comment from t_comment
+              where id = ${id} and post_id = ${postId}
+    </select>
 </mapper>

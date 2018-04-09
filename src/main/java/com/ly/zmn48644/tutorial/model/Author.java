@@ -1,21 +1,29 @@
 package com.ly.zmn48644.tutorial.model;
 
 public class Author {
-    private Integer id;
+    private int id;
     private String username;
     private String password;
     private String email;
     private String bio;
     private String favouriteSection;
 
-    public Integer getId() {
+    private Info info;
+    public Info getInfo() {
+        return info;
+    }
+
+    public void setInfo(Info info) {
+        this.info = info;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
-
 
     public String getUsername() {
         return username;
@@ -66,6 +74,7 @@ public class Author {
                 ", email='" + email + '\'' +
                 ", bio='" + bio + '\'' +
                 ", favouriteSection='" + favouriteSection + '\'' +
+                ", info=" + info +
                 '}';
     }
 }

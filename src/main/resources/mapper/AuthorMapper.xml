@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-
+<mapper namespace="com.ly.zmn48644.tutorial.mapper.AuthorMapper">
+<select id="selectAuthorById" resultType="Author">
+    select id , author_username as username , author_password as password ,
+     author_email as email, author_bio as bio, favourite_section , 'sj' as 'info.time'
+     from t_author where id = #{id}
+</select>
 </mapper>
