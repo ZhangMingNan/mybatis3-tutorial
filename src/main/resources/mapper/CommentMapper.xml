@@ -3,12 +3,17 @@
 <mapper namespace="com.ly.zmn48644.tutorial.mapper.CommentMapper">
 
     <parameterMap id="commentMap" type="com.ly.zmn48644.tutorial.model.Comment">
-        <parameter property="id" />
-        <parameter property="postId" />
+        <parameter property="id"/>
+        <parameter property="postId"/>
     </parameterMap>
 
     <select id="selectComment" resultType="Comment">
-              select id,post_id,name,comment from t_comment
-              where id = ${id} and post_id = ${postId}
+
+        select id,post_id,name,comment from t_comment
+
+        <where>
+             <if test="1==2">id = ${id}</if> and post_id = ${postId}
+        </where>
+
     </select>
 </mapper>
